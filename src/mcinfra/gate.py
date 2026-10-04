@@ -7,5 +7,6 @@ def check(body):
         raise InputError("body must be an object")
     failed = []
 
-    if body.get("cloud") not in {"gcp", "aws", "azure"}: failed.append("cloud")\n    if body.get("action") != "plan": failed.append("action")
+    if body.get("cloud") not in {"gcp", "aws", "azure"}: failed.append("cloud")
+    if body.get("action") != "plan": failed.append("action")
     return {"passed": not failed, "failed": failed, "applied": False}
