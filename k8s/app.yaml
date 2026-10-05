@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multi-cloud-infrastructure-manager
+  labels:
+    app: multi-cloud-infrastructure-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multi-cloud-infrastructure-manager
+  template:
+    metadata:
+      labels:
+        app: multi-cloud-infrastructure-manager
+    spec:
+      containers:
+        - name: api
+          image: multi-cloud-infrastructure-manager:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: multi-cloud-infrastructure-manager
+spec:
+  selector:
+    app: multi-cloud-infrastructure-manager
+  ports:
+    - port: 80
+      targetPort: 8080
