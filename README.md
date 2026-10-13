@@ -1,5 +1,12 @@
 # Multi-Cloud Infrastructure Manager
 
+## Overview
+
+A guardrail check for multi-cloud infrastructure requests. `POST /check` passes only when the cloud is gcp, aws or azure and the action is plan; anything else fails, and apply is always false. It shows how a platform can accept plan requests across providers while keeping apply out of the API's reach. A `/v1` ops API adds workspaces, tenant isolation, job approval and audit records.
+
+- **Built with:** Python, pytest, GitHub Actions
+- **Scope:** Local laptop proof with tests; it calls no hosted model and applies no production changes.
+
 <!-- project-guide:start -->
 ## Project guide
 
